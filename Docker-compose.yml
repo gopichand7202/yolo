@@ -1,13 +1,13 @@
-version: "3.9"
+import os
 
-services:
-  svelte_app:
-    image: nginx:alpine
-    container_name: svelte_prod
-    ports:
-      - "5173:5173"
-    volumes:
-      - ./dist:/usr/share/nginx/html:ro
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
-    command: ["nginx", "-g", "daemon off;"]
-    restart: unless-stopped
+UDP_HOST = os.environ.get("UDP_HOST", "127.0.0.1")
+RR_IP = os.environ.get("RR_IP", "127.0.0.1")
+
+
+environment:
+  UDP_HOST: host.docker.internal
+  RR_IP: host.docker.internal
+
+environment:
+  UDP_HOST: 192.168.10.50
+  RR_IP: 192.168.10.50
